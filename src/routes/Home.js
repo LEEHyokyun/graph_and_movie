@@ -2,6 +2,8 @@ import React from 'react'
 import {gql, useQuery} from '@apollo/client'
 import styled from 'styled-components'
 
+import Movie from '../components/Movie'
+
 const getmovie = gql`
 {
     getmovie{
@@ -53,7 +55,7 @@ function Home() {
                 <Subtitle>ToyProject</Subtitle>
             </Header>
             {loading && <Loading>Loading...</Loading>}
-            {!loading && data.getmovie && data.getmovie.map(el=><Movie key={el.id} {...el}/>)}
+            {!loading && data.getmovie && data.getmovie.map(el=><Movie key={el.id} id={el.id}/>)}
         </Container>
     )
 }
