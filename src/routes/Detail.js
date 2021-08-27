@@ -11,6 +11,7 @@ const seemovie = gql`
             medium_cover_image
             summary
             language
+            isLiked @client
           }
     }
 `
@@ -66,6 +67,7 @@ function Detail() {
         <Container>
           <Column>
             <Title>{data.seemovie.title}</Title>
+            <h1>{data.seemovie.isLiked? "YOU LIKE THIS!" : "YOU DO NOT LIKE THIS!"}</h1>
             <Subtitle>{data.seemovie.language}</Subtitle>
             {data.seemovie.summary && <Description>{data.seemovie.summary}</Description>}
             {!data.seemovie.summary && <Description>No summary! Believe your thought!</Description>}

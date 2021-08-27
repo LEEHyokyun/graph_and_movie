@@ -8,6 +8,8 @@ const getmovie = gql`
 {
     getmovie{
         id
+        title
+        summary
         medium_cover_image
         isLiked @client
       }
