@@ -44,9 +44,10 @@ const Description = styled.p`
 `;
 
 const Poster = styled.div`
-  width: 25%;
-  height: 60%;
+  width: 30%;
+  height: 80%;
   background-color: transparent;
+  background-image: url(${props => props.bg});
 `;
 
 function Detail() {
@@ -69,7 +70,7 @@ function Detail() {
             {data.seemovie.summary && <Description>{data.seemovie.summary}</Description>}
             {!data.seemovie.summary && <Description>No summary! Believe your thought!</Description>}
           </Column>
-          {!loading && data.seemovie.medium_cover_image && <Poster>{data.seemovie.medium_cover_image}</Poster>}
+          <Poster bg={data?.seemovie?.medium_cover_image}/>
         </Container>
       );
     }
