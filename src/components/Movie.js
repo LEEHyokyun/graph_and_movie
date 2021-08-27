@@ -7,8 +7,8 @@ const Container = styled.div`
   height: 380px;
   width: 100%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  overflow: hidden;
   border-radius: 7px;
+  overflow: visible
 `;
 
 const Poster = styled.div`
@@ -19,13 +19,15 @@ const Poster = styled.div`
   background-position: center center;
 `;
 
-function Movie({id, movieImage}) {
+//isLiked is from frontend, not backend
+function Movie({id, movieImage, isLiked}) {
     return (
         <div>
     <Container>
         <Link to={`/${id}`}>
         <Poster bg={movieImage} />
         </Link>
+        <button>{isLiked? "YOU LIKE THIS!" : "YOU DO NOT LIKE THIS!"}</button>
     </Container>
         </div>
     )
