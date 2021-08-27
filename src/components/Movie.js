@@ -1,7 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import {gql, useMutation} from '@apollo/client'
 import styled from 'styled-components'
+
+const triggerLike = gql`
+  mutation triggerLike($id : Int!){
+    triggerLike(id: $id) @client
+  }
+`
+
 
 const Container = styled.div`
   height: 380px;
@@ -21,13 +29,14 @@ const Poster = styled.div`
 
 //isLiked is from frontend, not backend
 function Movie({id, movieImage, isLiked}) {
+  const [triggerLikeByClicked] = useMutation(triggerLike, {variables: {id: Number(id)}})
     return (
         <div>
     <Container>
         <Link to={`/${id}`}>
         <Poster bg={movieImage} />
         </Link>
-        <button>{isLiked? "YOU LIKE THIS!" : "YOU DO NOT LIKE THIS!"}</button>
+        <button onClick={triggerLikeByClicked}>{isLiked? "UNLIKE" : "LIKE"}</button>
     </Container>
         </div>
     )
